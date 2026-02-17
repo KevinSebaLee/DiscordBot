@@ -1,0 +1,27 @@
+{
+  "name": "discord",
+  "version": "1.0.0",
+  "description": "Discord bot for personal server{",
+  "homepage": "https://github.com/KevinSebaLee/DiscordBot#readme",
+  "bugs": {
+    "url": "https://github.com/KevinSebaLee/DiscordBot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinSebaLee/DiscordBot.git"
+  },
+  "license": "ISC",
+  "author": "Pocket",
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/index.ts"
+  },
+  "dependencies": {
+    "discord.js": "^13.17.1",
+    "dotenv": "^17.3.1",
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2"
+  }
+}
