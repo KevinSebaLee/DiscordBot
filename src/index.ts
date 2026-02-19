@@ -1,7 +1,6 @@
 import { Client, Intents } from "discord.js"
-import { config } from "dotenv"
-
-config()
+import 'dotenv/config';
+import { handleAutoRegisterUser } from "./events/auto-register-users.js";
 
 const client = new Client({
     intents: [
@@ -12,8 +11,24 @@ const client = new Client({
     ],
 })
 
-client.login(process.env.TOKEN)
+async function main() {
+    try{
+         client.login(process.env.TOKEN)   
 
-client.on("ready", () => {
-    console.log(`Logged in as ${client.user?.tag}!`)
-})
+         client.on('guildMemberAdd', async (member) => {
+            const user = member.user;
+            const createdAt = user.createdAt;
+            const isBot = user.bot;
+            const iconUrl = user.displayAvatarURL();
+            const userId = user.id;
+            const discriminator = user.discriminator;
+
+            await handleAutoRegisterUser(userId, user.username, discriminator, iconUrl, isBot, createdAt);
+        });
+    }
+    catch(err){
+        console.error('Error logging in:', err);
+    }
+}
+
+main()
