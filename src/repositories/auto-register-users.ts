@@ -11,5 +11,6 @@ export async function autoRegisterUser(userId: string, username: string, discrim
         console.log(`User ${userId} registered successfully.`);
     } catch (err) {
         console.error(`Error registering user ${userId}:`, err);
+        throw err;
     }
 }
