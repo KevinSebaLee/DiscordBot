@@ -16,14 +16,8 @@ client.on("ready", () => {
 })
 
 client.on("guildMemberAdd", async (member) => {
-    const user = member.user
-    const createdAt = user.createdAt
-    const isBot = user.bot
-    const iconUrl = user.displayAvatarURL()
-    const userId = user.id
-    const discriminator = user.discriminator
-
-    await handleAutoRegisterUser(userId, user.username, discriminator, iconUrl, isBot, createdAt)
+    const { id, username, discriminator, bot, createdAt } = member.user
+    await handleAutoRegisterUser(id, username, discriminator, member.user.displayAvatarURL(), bot, createdAt)
 })
 
 client.login(process.env.TOKEN).catch((err) => {
